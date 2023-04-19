@@ -6,6 +6,7 @@ import numpy as np
 def get_tsne_embedding(affinity_mat, aff_to_dist_mat, perplexity, **kwargs):
     from sklearn import manifold
     tsne = sklearn.manifold.TSNE(metric='precomputed', perplexity=perplexity,
+                                init="random", # default changed to PCA with scikit-learn version 1.2
                                  **kwargs)
     dist_mat = aff_to_dist_mat(affinity_mat)
     embedding = tsne.fit_transform(dist_mat)

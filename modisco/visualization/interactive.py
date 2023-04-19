@@ -36,6 +36,7 @@ def get_tsne_embedding(pattern, track_names_and_signs, perplexity,
     tsne_embedding = (sklearn.manifold.TSNE(metric="precomputed",
                                             verbose=0,
                                             perplexity=perplexity,
+                                            init="random", # default changed to PCA with scikit-learn version 1.2
                                             random_state=seed)
                       .fit_transform(1/(np.maximum(pairwise_simmat, 1e-7) )))
     #1/(pairwise_simmat) mapps the affinities to distances.
